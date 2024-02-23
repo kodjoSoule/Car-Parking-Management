@@ -1,0 +1,26 @@
+/ProjetGestionParcAuto
+|-- css
+|   |-- style.css
+|-- includes
+|   |-- header.php
+|   |-- footer.php
+|-- js
+|   |-- script.js
+|-- database
+|   |-- schema.sql
+|   |-- connexion.db
+|-- pages
+|   |-- add_vehicle.php
+|   |-- edit_vehicle.php
+|   |-- view_vehicles.php
+|   |-- search_vehicles.php
+|   |-- delete_vehicle.php
+|   |-- login.php
+|-- actions
+|   |-- add_vehicle_action.php
+|   |-- edit_vehicle_action.php
+|   |-- delete_vehicle_action.php
+|-- .gitignore
+|-- README.md
+|-- config.php
+|-- index.php
