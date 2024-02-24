@@ -33,7 +33,7 @@ function displayVehicles($conn)
                     <td>{$row['mileage']}</td>
                     <td>
                         <a href='edit_vehicle.php?id={$row['id']}' class='btn btn-primary'>Modifier</a>
-                        <a href='delete_vehicle_action.php?id={$row['id']}' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ce véhicule?\")' class='btn btn-danger'>Supprimer</a>
+                        <a href='delete_vehicle_action.php?id={$row['id']}'  class='btn btn-danger'>Supprimer</a>
                     </td>
                 </tr>";
         }
