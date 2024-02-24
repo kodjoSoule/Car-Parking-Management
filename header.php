@@ -26,10 +26,10 @@
                     <a class="nav-link" href="index.php">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./../pages/view_vehicles.php">Véhicules</a>
+                    <a class="nav-link" href="view_vehicles.php">Véhicules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./../pages/add_vehicle.php">Ajouter un véhicule</a>
+                    <a class="nav-link" href="add_vehicle.php">Ajouter un véhicule</a>
                 </li>
                 <!-- Ajoutez d'autres liens de navigation au besoin -->
             </ul>

@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include 'header.php';
 include 'config.php';
 
 // Fonction pour afficher la liste des véhicules
@@ -56,4 +56,4 @@ function displayVehicles()
 
 </body>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'footer.php'; ?>
