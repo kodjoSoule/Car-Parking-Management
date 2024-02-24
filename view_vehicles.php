@@ -2,13 +2,15 @@
 include 'header.php';
 include 'config.php';
 
-// Fonction pour afficher la liste des véhicules
-function displayVehicles()
-{
-    global $conn;
+// Constantes pour les messages
+define('NO_VEHICLES_MESSAGE', 'Aucun véhicule trouvé.');
 
+// Fonction pour afficher la liste des véhicules
+function displayVehicles($conn)
+{
     $sql = "SELECT * FROM Vehicles";
     $result = $conn->query($sql);
+
 
     if ($result->num_rows > 0) {
         echo '<table class="table table-bordered">
@@ -38,33 +40,39 @@ function displayVehicles()
 
         echo "</tbody></table>";
     } else {
-        echo "Aucun véhicule trouvé.";
+        echo NO_VEHICLES_MESSAGE;
     }
 }
 
+// Logique de recherche
 $search = '';
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"])) {
+    // Récupérer la valeur de recherche
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    // $search = trim($_GET["search"]);
+    $search = trim($_GET["search"]);
+
+    // Validation et échappement
+    $search = mysqli_real_escape_string($conn, $search);
+    $sql = "SELECT * FROM Vehicles LIMIT 1";
+    $result = $conn->query($sql);
 }
-
 ?>
 
 <body>
-    <h1>Liste des véhicules</h1>
-
-    <!-- Section de recherche -->
-    <form method="GET" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <div class="input-group mb-3">
-            <input type="text" name="search" id="search" class="form-control" placeholder="Recherche par marque" value="<?php echo htmlspecialchars($search); ?>">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-outline-secondary">Rechercher</button>
+    <div class="container mt-5">
+        <h1>Liste des véhicules</h1>
+        <!-- Section de recherche -->
+        <form method="GET" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div class="input-group mb-3">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Recherche par marque" value="<?php echo htmlspecialchars($search); ?>">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">Rechercher</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <!-- Afficher la liste des véhicules -->
-    <?php displayVehicles(); ?>
+        <!-- Afficher la liste des véhicules -->
+        <?php displayVehicles($conn); ?>
 
 </body>
 
