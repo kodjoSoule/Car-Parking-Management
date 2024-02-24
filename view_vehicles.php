@@ -6,9 +6,12 @@ include 'config.php';
 define('NO_VEHICLES_MESSAGE', 'Aucun véhicule trouvé.');
 
 // Fonction pour afficher la liste des véhicules
-function displayVehicles($conn)
+function displayVehicles($conn, $search = '')
 {
-    $sql = "SELECT * FROM Vehicles";
+
+
+
+    $sql = "SELECT * FROM Vehicles WHERE brand LIKE '%$search%'";
     $result = $conn->query($sql);
 
 
@@ -48,13 +51,11 @@ function displayVehicles($conn)
 $search = '';
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"])) {
     // Récupérer la valeur de recherche
-
     $search = trim($_GET["search"]);
+
 
     // Validation et échappement
     $search = mysqli_real_escape_string($conn, $search);
-    $sql = "SELECT * FROM Vehicles LIMIT 1";
-    $result = $conn->query($sql);
 }
 ?>
 
@@ -72,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"])) {
         </form>
 
         <!-- Afficher la liste des véhicules -->
-        <?php displayVehicles($conn); ?>
+        <?php displayVehicles($conn, $search); ?>
 
 </body>
 
