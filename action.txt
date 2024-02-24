@@ -1,0 +1,24 @@
+<?php
+include 'config.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add_vehicle"])) {
+    $brand = $_POST["brand"];
+    $model = $_POST["model"];
+    $mileage = $_POST["mileage"];
+
+    // Gestion du téléchargement d'image en tant que BLOB
+    $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
+
+    $stmt = $conn->prepare("INSERT INTO Vehicles (brand, model, mileage, image_data) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssis", $brand, $model, $mileage, $imageData);
+    
+    if ($stmt->execute()) {
+        echo "Véhicule ajouté avec succès.";
+    } else {
+        echo "Erreur lors de l'ajout du véhicule : " . $conn->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
