@@ -39,8 +39,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
 
 ?>
 
-<body>
-    <h1>Supprimer le véhicule - ID <?php echo $vehicle['id']; ?></h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Supprimer le véhicule - ID <?php echo $vehicle['id']; ?></title>
+</head>
+
+<body class="container mt-5">
+
+    <h1 class="mb-4">Supprimer le véhicule - ID <?php echo $vehicle['id']; ?></h1>
 
     <?php
     // Afficher le message de succès ou d'erreur
@@ -54,10 +65,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
     <p>Voulez-vous vraiment supprimer le véhicule <?php echo $vehicle['brand'] . ' ' . $vehicle['model']; ?> ?</p>
 
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=$vehicle_id"); ?>">
-        <button type="submit" name="confirm_delete" class="btn btn-danger">Confirmer la suppression</button>
-        <a href="view_vehicles.php" class="btn btn-secondary">Annuler</a>
+        <?php
+        //cacher ca une fois que la suppression est confirmée
+        if ($deleteMessage == '' && $deleteError == '')
+            echo '<button type="submit" name="confirm_delete" class="btn btn-danger">Confirmer la suppression</button>';
+
+
+        ?>
+        <a href="view_vehicles.php" class="btn btn-secondary">Retour à la liste des véhicules</a>
     </form>
 
 </body>
 
-<?php include 'footer.php'; ?>
+</html>
