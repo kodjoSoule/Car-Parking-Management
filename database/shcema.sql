@@ -10,3 +10,6 @@ CREATE TABLE Vehicles (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+--insertion de données
+INSERT INTO Vehicles (brand, model, mileage) VALUES ('Peugeot', '208', 10000);
+INSERT INTO Vehicles (brand, model, mileage) VALUES ('Renault', 'Clio', 20000);

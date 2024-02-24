@@ -45,7 +45,10 @@ function displayVehicles()
     <h1>Liste des véhicules</h1>
 
     <!-- Section de recherche -->
-    <form action="search_vehicle_action.php" method="GET">
+    <!-- action current page -->
+    <form method="GET" action="
+    <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>
+    ">
         <label for="search">Recherche par marque :</label>
         <input type="text" name="search" id="search">
         <button type="submit">Rechercher</button>
